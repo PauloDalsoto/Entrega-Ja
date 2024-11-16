@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+
+    /* Estilos de imagem de fundo */
+    background-image: url('./img/seu-fundo3.png'); /* Caminho da imagem de fundo */
+    background-size: 100% 95%; /* Ajusta a imagem para cobrir toda a área */
+    background-position: center; /* Centraliza a imagem de fundo */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-attachment: fixed; /* Mantém a imagem fixa ao rolar a página */
+}
+
+header {
+    background-color: #e88c29;
+    color: #fff;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.seta {
+    background-color: #e88c29;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+    position: absolute;
+    right: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Garantir que o contêiner ocupe toda a altura */
+    width: 100%;
+    padding: 20px;
+}
+
+.card {
+    background: #bd660ae1; /* Fundo semi-transparente */
+    backdrop-filter: blur(8px); /* Efeito de desfoque */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    width: 100%;
+    max-width: 500px; /* Limita a largura do card */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Centraliza o texto do título */
+    border: 1px solid rgba(234, 126, 10, 0.5);
+}
+
+.card h2 {
+    color: #fff;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center; /* Centraliza o título */
+}
+
+.card p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff;
+    text-align: left; /* Alinha o texto à esquerda */
+    width: 100%; /* Garante que ocupe toda a largura do card */
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: left; /* Alinha os itens da lista à esquerda */
+    width: 100%; /* Garante que ocupe toda a largura do card */
+}
+
+.card ul li {
+    color: #fff;
+    margin-bottom: 15px; /* Espaço entre os itens da lista */
+}
+
+
+.card ul li strong {
+    margin-bottom: 10px; /* Um pequeno espaço extra entre as paradas */
+}
+
+/* Link de ação no card */
+.card a {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: #e88c29;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    width: fit-content;
+}
+
+.card a:hover {
+    background-color: #ad2e13;
+}
+
+/* Estilo para o Rodapé */
+footer {
+    background-color: #e88c29;
+    color: #fff;
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+}
+
+footer p {
+    font-size: 14px;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .seta {
+        font-size: 18px;
+        height: 25px;
+        width: 25px;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .card {
+        padding: 20px;
+        max-width: 400px;
+    }
+
+    a {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}

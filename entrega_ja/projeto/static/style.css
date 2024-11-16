@@ -1,0 +1,90 @@
+a {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+
+  /* Estilos de imagem de fundo */
+  background-image: url('./img/seu-fundo.png'); /* Caminho da imagem de fundo */
+  background-size: 100% 90%; /* Ajusta a imagem para cobrir toda a área */
+  background-position: center; /* Centraliza a imagem de fundo */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  background-attachment: fixed; /* Mantém a imagem fixa ao rolar a página */
+}
+
+header {
+  background-color: #e88c29; /*Cor do cabeçalho*/
+  color: #fff; /*Cor da fonte*/
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* Alinha o conteúdo à esquerda */
+  padding: 0 10px;
+  margin-left: 20px;
+}
+
+.container {
+  text-align: center;
+  flex: 1;
+}
+
+.h2 {
+ 
+  letter-spacing: 3px;
+  color: #fff;
+}
+
+.strong {
+  color: #893c11;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  margin-top: 50px;
+  
+}
+
+button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  cursor: pointer;
+  font-size: 30px;
+  border-radius: 50%;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: transparent;
+  color: #ad2e13;
+  border: 2px solid #ad2e13;
+}
+
+/* Estilo para o Rodapé */
+footer {
+  background-color: #e88c29;
+  color: white;
+  text-align: center;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+}
+
+footer p {
+  font-size: 14px;
+}

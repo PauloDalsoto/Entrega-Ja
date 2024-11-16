@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='link.css') }}">
+</head>
+<body>
+    <header>
+        <button class="seta" onclick="window.location.href='{{ url_for('index') }}'">←</button>
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo">
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Resumo da Rota</h2>
+            
+            <!-- Exibir o tempo total da rota -->
+            <p><strong>Tempo total:</strong> {{ route_data.total_duration }}</p>
+            
+            <!-- Exibir a distância total -->
+            <p><strong>Distância:</strong> {{ route_data.total_distance }}</p>
+            
+            <p><br></br><strong>Rota Calculada:</strong></p>
+            <ul>
+                <!-- Exibir o endereço de partida em negrito -->
+                <li><strong>Partida:</strong> {{ route_data.steps[0].start_address }}</li>
+                {% for step in route_data.steps[:-1] %}
+                    <!-- Exibir as paradas numeradas -->
+                    <li><strong>Parada {{ loop.index }}:</strong> {{ step.end_address }}</li>
+                {% endfor %}
+            </ul>
+    
+            <!-- Adicionar link de navegação -->
+            <a href="https://www.example.com" target="_blank">Link</a>
+        </div>
+    </div>
+    
+
+    <footer>© 2024 Sua Rota Segura</footer>
+</body>
+</html>

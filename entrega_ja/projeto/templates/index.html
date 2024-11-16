@@ -2,69 +2,24 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planejador de Rota</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Entrega Já</h1>
-    <form action="{{ url_for('calculate_route') }}" method="POST">
-        <label for="start_location">Ponto de Partida:</label>
-        <input type="text" id="start_location" name="start_location" required>
-
-        <div id="address-fields">
-            <div class="address-field">
-                <label>Endereço 1:</label>
-                <input type="text" name="addresses[]" required>
-                <button type="button" class="remove-button" onclick="removeAddress(this)">X</button>
-            </div>
+    <header>
+        <h3>Bem-vindo ao Seu Calculador de Rota!</h3>
+    </header>
+    
+        <div class="container">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo">
+            <h2 class="h2">Sua <strong class="strong">ROTA</strong> mais segura!</h2>
+            <p style="color: #fff;">Clique no botão para calcular sua rota...</p>
+            <button onclick="window.location.href='{{ url_for('endereco') }}'">></button>
         </div>
-
-        <button type="button" onclick="addAddress()">Adicionar Endereço</button>
-        <button type="submit">Obter Rota</button>
-    </form>
-
-    <script>
-        let addressCount = 1;
-
-        function addAddress() {
-            addressCount++;
-            const container = document.createElement("div");
-            container.className = "address-field";
-
-            const label = document.createElement("label");
-            label.textContent = `Endereço ${addressCount}:`;
-
-            const input = document.createElement("input");
-            input.type = "text";
-            input.name = "addresses[]";
-            input.required = true;
-
-            const removeButton = document.createElement("button");
-            removeButton.type = "button";
-            removeButton.className = "remove-button";
-            removeButton.textContent = "X";
-            removeButton.onclick = function() { removeAddress(removeButton); };
-
-            container.appendChild(label);
-            container.appendChild(input);
-            container.appendChild(removeButton);
-
-            document.getElementById("address-fields").appendChild(container);
-        }
-
-        function removeAddress(button) {
-            const addressFields = document.getElementById("address-fields");
-            if (addressFields.childElementCount > 1) {
-                button.parentElement.remove();
-                addressCount--;
-                // Atualiza as labels dos endereços
-                const labels = addressFields.querySelectorAll("label");
-                labels.forEach((label, index) => {
-                    label.textContent = `Endereço ${index + 1}:`;
-                });
-            }
-        }
-    </script>
+    
+    <footer>© 2024 Sua Rota Segura</footer>
 </body>
 </html>

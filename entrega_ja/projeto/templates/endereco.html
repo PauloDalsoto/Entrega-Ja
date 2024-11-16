@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endereço</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='endereco.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='modal.css') }}">
+</head>
+<body>
+    <header>
+        <button class="seta" onclick="window.location.href='{{ url_for('index') }}'">←</button>
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo"> 
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h1 class="title">Endereços</h1>
+            <p>Por favor, insira os endereços:</p>
+            <form action="{{ url_for('calculate_route') }}" method="POST" id="enderecosForm">
+                <textarea name="start_location" placeholder="Endereço de partida" required>Marista Pio XII, novo hamburgo</textarea>
+                <textarea name="stop_locations" placeholder="Endereço 1" required>Unisinos, sao leopoldo</textarea>
+                <textarea name="stop_locations" placeholder="Endereço 2" required>Ifashion outlet, novo hamburgo</textarea>
+                <textarea name="stop_locations" placeholder="Endereço 3" required>Shopping praia de belas, porto alegre</textarea>
+                <textarea name="stop_locations" placeholder="Endereço 4" required>Bourbon Shopping Novo Hamburgo</textarea>
+                <button class="plus" type="button" onclick="adicionarCampo()">+</button> 
+                <button class="cal" type="button" id="submitButton" onclick="verificarCampos()">Calcular Rota</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Alerta -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Aviso</div>
+            <div class="modal-body">Por favor, preencha o "Endereço de partida" e ao menos um "Endereço de parada".</div>
+            <div class="modal-footer">
+                <button class="modal-button" onclick="fecharModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>© 2024 Sua Rota Segura</footer>
+
+    <script>
+        // Função para ajustar o placeholder com incremento de Endereços
+        function adicionarCampo() {
+            const container = document.querySelector('#enderecosForm');
+            const totalEnderecos = container.querySelectorAll('textarea[name="stop_locations"]').length;
+            const novoTextarea = document.createElement('textarea');
+            novoTextarea.name = "stop_locations";
+            novoTextarea.placeholder = `Endereço ${totalEnderecos + 1}`;
+            container.insertBefore(novoTextarea, document.querySelector('.plus'));
+        }
+
+        // Função para verificar se os campos obrigatórios estão preenchidos
+        function verificarCampos() {
+            const startLocation = document.querySelector('textarea[name="start_location"]');
+            const stopLocations = document.querySelectorAll('textarea[name="stop_locations"]');
+            const modal = document.getElementById('modal');
+
+            // Verificar se o endereço de partida e pelo menos um de destino estão preenchidos
+            const algumDestinoPreenchido = Array.from(stopLocations).some(textarea => textarea.value.trim() !== '');
+
+            if (startLocation.value.trim() !== '' && algumDestinoPreenchido) {
+                // Se estiver correto, submete o formulário
+                document.forms['enderecosForm'].submit();
+            } else {
+                // Se não estiver correto, exibe a modal
+                exibirModal();
+            }
+        }
+
+        // Função para exibir a modal
+        function exibirModal() {
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        // Função para fechar a modal
+        function fecharModal() {
+            // Fechar a modal
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
