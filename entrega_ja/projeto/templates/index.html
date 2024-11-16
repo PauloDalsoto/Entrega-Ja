@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planejador de Rota</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Entrega Já</h1>
+    <form action="{{ url_for('calculate_route') }}" method="POST">
+        <label for="start_location">Ponto de Partida:</label>
+        <input type="text" id="start_location" name="start_location" required>
+
+        <div id="address-fields">
+            <div class="address-field">
+                <label>Endereço 1:</label>
+                <input type="text" name="addresses[]" required>
+                <button type="button" class="remove-button" onclick="removeAddress(this)">X</button>
+            </div>
+        </div>
+
+        <button type="button" onclick="addAddress()">Adicionar Endereço</button>
+        <button type="submit">Obter Rota</button>
+    </form>
+
+    <script>
+        let addressCount = 1;
+
+        function addAddress() {
+            addressCount++;
+            const container = document.createElement("div");
+            container.className = "address-field";
+
+            const label = document.createElement("label");
+            label.textContent = `Endereço ${addressCount}:`;
+
+            const input = document.createElement("input");
+            input.type = "text";
+            input.name = "addresses[]";
+            input.required = true;
+
+            const removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.className = "remove-button";
+            removeButton.textContent = "X";
+            removeButton.onclick = function() { removeAddress(removeButton); };
+
+            container.appendChild(label);
+            container.appendChild(input);
+            container.appendChild(removeButton);
+
+            document.getElementById("address-fields").appendChild(container);
+        }
+
+        function removeAddress(button) {
+            const addressFields = document.getElementById("address-fields");
+            if (addressFields.childElementCount > 1) {
+                button.parentElement.remove();
+                addressCount--;
+                // Atualiza as labels dos endereços
+                const labels = addressFields.querySelectorAll("label");
+                labels.forEach((label, index) => {
+                    label.textContent = `Endereço ${index + 1}:`;
+                });
+            }
+        }
+    </script>
+</body>
+</html>
